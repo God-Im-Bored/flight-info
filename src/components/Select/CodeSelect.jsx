@@ -32,16 +32,16 @@ const CodeSelect = ({ options, codeUpdate }) => {
   return (
     <div>
       <FormControl style={{ minWidth: 200 }}>
-        <InputLabel id="demo-mutiple-chip-label">Airport(s)</InputLabel>
+        <InputLabel id="code-option-select">Airport(s)</InputLabel>
         <Select
           
-          labelId="demo-mutiple-chip-label"
-          id="demo-mutiple-chip"
+          labelId="code-option-select"
+          id="code-option"
           multiple
           required
           value={code}
           onChange={handleChange}
-          input={<Input id="select-multiple-chip" />}
+          input={<Input id="select-code-multiple" />}
           renderValue={(selected) => (
             <div className={styles.chips}>
               {selected.map((value) => (
