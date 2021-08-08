@@ -17,6 +17,19 @@ const dataOptions = [
   { name: "% of flights delayed due to air traffic control" },
 ];
 
+const dataOptionsArr = [
+  "number of flights",
+  "% of flights on time",
+  "% of flights canceled",
+  "% of flights diverted",
+  "% of flights delayed",
+  "% of flights delayed due to carrier delay",
+  "% of flights delayed due to late aircraft",
+  "% of flights delyaed due to weather",
+  "% of flights delayed due to security",
+  "% of flights delayed due to air traffic control",
+];
+
 class App extends React.Component {
   constructor(props) {
     super();
@@ -60,14 +73,17 @@ class App extends React.Component {
     const { flightData, optionQuery, codeQuery, yearQuery } = this.state;
     const num = parseInt(yearQuery)
     const valid = [];
+    const dataOption = dataOptions.find(option => option.name === optionQuery)
 
     for (let i = 0; i < codeQuery.length; i++) {
+     
       if (flightData[codeQuery[i]]) {
-        valid.push(flightData[codeQuery[i]][num]);
+        console.log(flightData[codeQuery[i]][num][dataOption.name])
+        valid.push(flightData[codeQuery[i]][num][dataOption.name]);
       }
     }
 
-    const dataOption = dataOptions.find(option => option.name === optionQuery);
+   
     this.setState({ selectedData: valid })
   }
 

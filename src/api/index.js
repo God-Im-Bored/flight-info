@@ -123,7 +123,7 @@ export const fetchFlightData = async () => {
     }
 
 
-    console.log('metaData.flightData =', metaData);
+    // console.log('metaData.flightData =', metaData);
     return metaData
   } catch (err) {
     console.error(err);
