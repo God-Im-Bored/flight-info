@@ -62,129 +62,122 @@ export const fetchFlightData = async () => {
 
       // % of flights on time calc
       flightYear["% of flights on time"][month] =
-        (flights["On Time"] / flights.Total).toFixed(1) * 100 + "%";
+        Number(((flights["On Time"] / flights.Total) * 100).toFixed(2))
       if (!flightYear["% of flights on time"].total)
         flightYear["% of flights on time"].total = 0;
       flightYear["% of flights on time"].total += flights["On Time"];
       flightYear["% of flights on time"].mean =
-        (
+        Number(((
           flightYear["% of flights on time"].total /
           flightYear["number of flights"].total
-        ).toFixed(1) *
-          100 +
-        "%";
+        ) * 100).toFixed(1))
 
       // % of flights canceled calc
       flightYear["% of flights canceled"][month] =
-        (flights.Cancelled / flights.Total).toFixed(2) * 100 + "%";
+        Number(((flights.Cancelled / flights.Total) * 100).toFixed(2))
       if (!flightYear["% of flights canceled"].total)
         flightYear["% of flights canceled"].total = 0;
       flightYear["% of flights canceled"].total += flights.Cancelled;
       flightYear["% of flights canceled"].mean =
-        (
+        Number(((
           flightYear["% of flights canceled"].total /
           flightYear["number of flights"].total
-        ).toFixed(3) *
-          100 +
-        "%";
+        ) * 100).toFixed(3))
 
       // % of flights diverted calc
       flightYear["% of flights diverted"][month] =
-        (flights.Diverted / flights.Total).toFixed(3) * 100 + "%";
+        Number(((flights.Diverted / flights.Total) * 100).toFixed(3))
       if (!flightYear["% of flights diverted"].total)
         flightYear["% of flights diverted"].total = 0;
       flightYear["% of flights diverted"].total += flights.Diverted;
       flightYear["% of flights diverted"].mean =
-        (
+        Number(((
           flightYear["% of flights diverted"].total /
           flightYear["number of flights"].total
-        ).toFixed(4) *
-          100 +
-        "%";
+        ) * 100).toFixed(4))
 
       // % of flights delayed calc
       flightYear["% of flights delayed"][month] =
-        (flights.Delayed / flights.Total).toFixed(2) * 100 + "%";
+        Number(((flights.Delayed / flights.Total) * 100).toFixed(2))
       if (!flightYear["% of flights delayed"].total)
         flightYear["% of flights delayed"].total = 0;
       flightYear["% of flights delayed"].total += flights.Delayed;
       flightYear["% of flights delayed"].mean =
-        (
+        Number(((
           flightYear["% of flights delayed"].total /
           flightYear["number of flights"].total
-        ).toFixed(2) *
-          100 +
-        "%";
+        ) * 100).toFixed(2))
 
       // % of flights delayed due to carrier delay calc
       flightYear["% of flights delayed due to carrier delay"][month] =
-        (delays.Carrier / flights.Total).toFixed(3) * 100 + "%";
+        Number(((delays.Carrier / flights.Total) * 100).toFixed(2))
       if (!flightYear["% of flights delayed due to carrier delay"].total)
         flightYear["% of flights delayed due to carrier delay"].total = 0;
       flightYear["% of flights delayed due to carrier delay"].total +=
         delays.Carrier;
       flightYear["% of flights delayed due to carrier delay"].mean =
-        (
+        Number(((
           flightYear["% of flights delayed due to carrier delay"].total /
           flightYear["number of flights"].total
-        ).toFixed(3) *
-          100 +
-        "%";
+        ) * 100).toFixed(2))
 
       // % of flights delayed due to late aircraft calc
       flightYear["% of flights delayed due to late aircraft"][month] =
-        (delays["Late Aircraft"] / flights.Total).toFixed(3) * 100 + "%";
+        Number(((delays["Late Aircraft"] / flights.Total) * 100).toFixed(2))
       if (!flightYear["% of flights delayed due to late aircraft"].total)
         flightYear["% of flights delayed due to late aircraft"].total = 0;
       flightYear["% of flights delayed due to late aircraft"].total +=
         delays["Late Aircraft"];
       flightYear["% of flights delayed due to late aircraft"].mean =
-        (
+        Number(((
           flightYear["% of flights delayed due to late aircraft"].total /
           flightYear["number of flights"].total
-        ).toFixed(3) *
-          100 +
-        "%";
+        ) * 100).toFixed(2))
 
       // % of flights delayed due to weather calc
       flightYear["% of flights delayed due to weather"][month] =
         delays.Weather / flights.Total;
-      flightYear["% of flights delayed due to weather"][month] =
-        (delays.Weather / flights.Total).toFixed(3) * 100 + "%";
+      flightYear["% of flights delayed due to weather"][month] = Number(
+        ((delays.Weather / flights.Total) * 100).toFixed(2)
+      );
       if (!flightYear["% of flights delayed due to weather"].total)
         flightYear["% of flights delayed due to weather"].total = 0;
       flightYear["% of flights delayed due to weather"].total += delays.Weather;
-      flightYear["% of flights delayed due to weather"].mean =
+      flightYear["% of flights delayed due to weather"].mean = Number(
         (
-          flightYear["% of flights delayed due to weather"].total /
-          flightYear["number of flights"].total
-        ).toFixed(3) *
-          100 +
-        "%";
+          (flightYear["% of flights delayed due to weather"].total /
+            flightYear["number of flights"].total) *
+          100
+        ).toFixed(3)
+      );
 
       // % of flights delayed due to security calc
       flightYear["% of flights delayed due to security"][month] =
         delays.Security / flights.Total;
-      flightYear["% of flights delayed due to security"][month] =
-        (delays.Security / flights.Total).toFixed(5) * 100 + "%";
+      flightYear["% of flights delayed due to security"][month] = Number(
+        ((delays.Security / flights.Total) * 100).toFixed(2)
+      );
       if (!flightYear["% of flights delayed due to security"].total)
         flightYear["% of flights delayed due to security"].total = 0;
       flightYear["% of flights delayed due to security"].total +=
         delays.Security;
-      flightYear["% of flights delayed due to security"].mean =
+      flightYear["% of flights delayed due to security"].mean = Number(
         (
-          flightYear["% of flights delayed due to security"].total /
-          flightYear["number of flights"].total
-        ).toFixed(5) *
-          100 +
-        "%";
+          (flightYear["% of flights delayed due to security"].total /
+            flightYear["number of flights"].total) *
+          100
+        ).toFixed(2)
+      );
 
       // % of flights delayed due to NAS calc
       flightYear["% of flights delayed due to air traffic control"][month] =
         delays["National Aviation System"] / flights.Total;
       flightYear["% of flights delayed due to air traffic control"][month] =
-        (delays["National Aviation System"] / flights.Total).toFixed(3) * 100 +
-        "%";
+        Number(
+          ((delays["National Aviation System"] / flights.Total) * 100).toFixed(
+            1
+          )
+        );
       if (!flightYear["% of flights delayed due to air traffic control"].total)
         flightYear["% of flights delayed due to air traffic control"].total = 0;
       flightYear["% of flights delayed due to air traffic control"].total +=
@@ -193,9 +186,7 @@ export const fetchFlightData = async () => {
         (
           flightYear["% of flights delayed due to air traffic control"].total /
           flightYear["number of flights"].total
-        ).toFixed(3) *
-          100 +
-        "%";
+        ).toFixed(3) * 100;
     }
 
     // console.log('metaData.flightData =', metaData);
