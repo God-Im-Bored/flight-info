@@ -4,6 +4,19 @@ import { DataSelect, YearSelect, CodeSelect, DataTable } from "./components";
 import { fetchFlightData } from "./api";
 import { Button } from "@material-ui/core";
 
+const dataOptions = [
+  { name: "number of flights" },
+  { name: "% of flights on time" },
+  { name: "% of flights canceled" },
+  { name: "% of flights diverted" },
+  { name: "% of flights delayed" },
+  { name: "% of flights delayed due to carrier delay" },
+  { name: "% of flights delayed due to late aircraft" },
+  { name: "% of flights delayed due to weather" },
+  { name: "% of flights delayed due to security" },
+  { name: "% of flights delayed due to air traffic control" },
+];
+
 class App extends React.Component {
   constructor(props) {
     super();
@@ -44,7 +57,7 @@ class App extends React.Component {
   handleSubmit() {
     // event.preventDefault()
     console.log("submit pressed");
-    const { flightData, codeQuery, yearQuery } = this.state;
+    const { flightData, optionQuery, codeQuery, yearQuery } = this.state;
     const num = parseInt(yearQuery)
     const valid = [];
 
@@ -53,6 +66,8 @@ class App extends React.Component {
         valid.push(flightData[codeQuery[i]][num]);
       }
     }
+
+    const dataOption = dataOptions.find(option => option.name === optionQuery);
     this.setState({ selectedData: valid })
   }
 
@@ -74,13 +89,15 @@ class App extends React.Component {
   }
 
   render() {
+    
+
     console.log(this.state);
-    const { codes, years } = this.state;
+    const { codes, years, selectedData } = this.state;
     return (
       <div className={styles.root}>
         <div className={styles.select}>
           <h3 className={styles.text}>Show</h3>
-          <DataSelect optionUpdate={this.updateOption} />
+          <DataSelect optionUpdate={this.updateOption} dataOptions={dataOptions.map(option => option.name)} />
           <h3 className={styles.text}>for</h3>
           <YearSelect options={years} yearUpdate={this.updateYear} />
           <h3 className={styles.text}>at</h3>
@@ -94,7 +111,7 @@ class App extends React.Component {
             Reset
           </Button>
           <div>
-            <DataTable />
+            <DataTable data={selectedData} />
           </div>
         </div>
       </div>
@@ -103,3 +120,4 @@ class App extends React.Component {
 }
 
 export default App;
+
